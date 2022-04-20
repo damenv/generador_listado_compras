@@ -1,0 +1,14 @@
+{% block content %}
+    <article>
+        <a href="{% url 'alergeno-create' %}"><button>Agregar Alergeno</button></a>
+    </article>
+    {% for alergeno in alergeno_list %}
+        <article>
+            <h2>
+                <a href="{% url 'alergeno-detail' alergeno.id %}">
+                    {{ alergeno.alergeno }}
+                </a>
+            </h2>
+        </article>
+    {% endfor %}
+{% endblock %}

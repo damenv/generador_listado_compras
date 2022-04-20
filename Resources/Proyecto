@@ -1,0 +1,81 @@
+Listado de compras
+Listado de Elaboracion
+Receta
+Ingrediente
+Producto
+
+Funcionalidades:
+-Agregar/Editar/Visualizar/Eliminar Ingrediente
+-Agregar/Editar/Visualizar/Eliminar Receta
+-Busqueda segun filtros (sin gluten, alergenos, tipo de producto, proveedor, aplicacion, etc.)
+-Ficha tecnica
+-Escandallo
+-Obtener Listado de Compras e informacion contigua
+-Migrador de datos
+
+MVP:
+	-Migrador de datos
+	-Obtener Listado de Compras e informacion contigua
+
+
+Usuario introduce las elaboraciones que desea separados por comas
+Sistema reconoce cada receta y consulta base de datos para obtener los ingredientes
+Sistema obtiene costo de cada ingrediente y lo coloca en una lista
+Sistema muestra desgloce por cada ingrediente y el total para todas las elaboraciones.
+
+Tablas:
+
+Elaboracion
+	-idElaboracion
+	-Tamaño Racion
+	-Numero de Raciones
+	-Tiempo de produccion (h)
+	-Porcentaje Eficiencia
+	-Coste hora
+	-PVP
+	-Impuestos
+	-Precio Neto
+	-Coste Racion
+	-%MC
+	-Rendimiento
+	-Coste Materia Prima
+	-Coste Produccion
+	-Costes Suministros
+	-Coste Total
+	-Listado Ingredientes
+	-familia
+	-formato
+	-sabor
+	-producto base
+	-Preparacion
+	-Link foto
+	-Alergenos
+
+Elaboracion_Alergeno
+	-idElaboracion
+	-idAlergeno
+
+Alergeno
+	-idAlergeno
+	-Alergeno
+
+idListado_Ingredientes
+	-idListado_Ingredientes
+	-idElaboracion
+	-Lista_Receta_Ingrediente
+
+
+Ingrediente
+	-idReceta_Ingrediente
+	-idIngrediente
+	-idListado_Ingredientes
+	-Cantidad
+	-Unidad de medida
+
+Alimento
+	-idIngrediente
+	-Producto
+	-Precio
+	-Unidad de Medida
+	-IVA
+	-Proveedor

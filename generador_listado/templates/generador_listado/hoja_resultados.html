@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoja de Resultados</title>
+</head>
+<body>
+    <h1> Hoja de Resultados </h1>
+    <table id="tabla-resultados">
+        <thead>
+            <tr>
+                <th>Producto</th>
+                <th>Precio Unitario</th>
+                <th>Cantidad</th>
+                <th>Total sin IVA</th>
+                <th>IVA</th>
+                <th>Total con IVA</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+    <h2>Total: {{ total }}</h2>
+</body>
+</html>
+  {{ ingredientes|json_script:"listado" }}
+<script>
+    const lista = JSON.parse(document.getElementById('listado').textContent);
+    const tabla = document.getElementById('tabla-resultados').childNodes[1];
+    for (const key of Object.keys(lista)) {
+        var fila = tabla.insertRow(-1);
+        var producto = fila.insertCell(0);
+        producto.innerHTML = key;
+
+        var precioUnitario = fila.insertCell(1);
+        precioUnitario.innerHTML = lista[key].precio_unitario;
+
+        var cantidad = fila.insertCell(2);
+        cantidad.innerHTML = lista[key].cantidad;
+
+        var totalSinIva = fila.insertCell(3);
+        totalSinIva.innerHTML = lista[key].precio_sin_iva;
+
+        var iva = fila.insertCell(4);
+        iva.innerHTML = lista[key].iva;
+
+        var totalConIva = fila.insertCell(5);
+        totalConIva.innerHTML = lista[key].precio_con_iva;
+
+        tabla.appendChild(fila);
+    };
+
+</script>

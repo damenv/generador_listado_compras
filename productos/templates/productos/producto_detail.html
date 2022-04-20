@@ -1,0 +1,15 @@
+<article>
+    <h2>{{ producto.producto }}</h2>
+    <div>
+        <p><strong>Precio: </strong>{{ producto.precio }}</p>
+        <p><strong>IVA: </strong>{{ producto.iva }}</p>
+        <p><strong>Cantidad: </strong>{{ producto.cantidad }} {{ producto.unidad_medida }}</p>
+        {% if producto.proveedor %}
+        <p><strong>Proveedor: </strong><a href="{% url 'proveedor-detail' producto.proveedor %}">{{ producto.proveedor }}</a></p>
+        {% endif %}
+    </div>
+    <p>
+        <a href="{% url 'producto-update' producto.id %}">✍️ Editar</a>
+        <a href="{% url 'producto-delete' producto.id %}">✍️ Eliminar</a>
+    </p>
+</article>

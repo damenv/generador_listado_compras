@@ -1,0 +1,32 @@
+{% block content %}
+    <article>
+        <a href="{% url 'ingrediente-create' %}"><button>Agregar Ingrediente</button></a>
+    </article>
+    {% for elaboracion in elaboracion_list %}
+        <article>
+            <h1>
+                <a href="{% url 'elaboracion-detail' elaboracion.id %}">
+                    {{ elaboracion.nombre }}
+                </a>
+            </h1>
+            <h2>Ingredientes</h2>
+        </article>
+        {% for ingrediente in ingrediente_list %}
+            {% if elaboracion.nombre|slugify == ingrediente.elaboracion|slugify %}
+                <article>
+                    <h3>
+                        {% if ingrediente.producto %}
+                            <a href="{% url 'ingrediente-detail' ingrediente.id %}">
+                                     {{ ingrediente.producto }}
+                            </a>
+                        {% else %}
+                            <a href="{% url 'ingrediente-detail' ingrediente.id %}">
+                                     {{ ingrediente.producto_elaboracion }}
+                            </a>
+                        {% endif %}
+                    </h3>
+                </article>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+{% endblock %}

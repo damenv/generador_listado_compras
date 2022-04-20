@@ -1,0 +1,16 @@
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+    {% if elaboracion %}
+        <a href="{% url 'elaboracion-detail' elaboracion.id %}">
+            <button>Cancel</button>
+        </a>
+    {% else %}
+        <a href="{% url 'elaboracion-list' %}">
+            <button>Cancel</button>
+        </a>
+    {% endif %}
+{% endblock %}

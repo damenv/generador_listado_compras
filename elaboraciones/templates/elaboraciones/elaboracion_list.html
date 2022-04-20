@@ -1,0 +1,17 @@
+{% block content %}
+    <article>
+        <a href="{% url 'elaboracion-create' %}"><button>Agregar Elaboración</button></a>
+    </article>
+    {% for elaboracion in elaboracion_list %}
+        <article>
+            <h2 class="{{ elaboracion.fecha_creado|date:'l' }}">
+                {{ elaboracion.fecha_creado|date:'Y-m-d H:i' }}
+            </h2>
+            <h3>
+                <a href="{% url 'elaboracion-detail' elaboracion.id %}">
+                    {{ elaboracion.nombre }}
+                </a>
+            </h3>
+        </article>
+    {% endfor %}
+{% endblock %}

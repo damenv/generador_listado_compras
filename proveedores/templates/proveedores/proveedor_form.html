@@ -1,0 +1,16 @@
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Save">
+    </form>
+    {% if proveedor %}
+        <a href="{% url 'proveedor-detail' proveedor.id %}">
+            <button>Cancel</button>
+        </a>
+    {% else %}
+        <a href="{% url 'proveedor-list' %}">
+            <button>Cancel</button>
+        </a>
+    {% endif %}
+{% endblock %}

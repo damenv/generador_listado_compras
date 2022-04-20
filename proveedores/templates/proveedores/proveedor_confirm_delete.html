@@ -1,0 +1,13 @@
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <p>
+            Estas seguro que deseas eliminar
+            <em>"{{ proveedor.nombre }}"</em>
+           ?
+        </p>
+        <input type="submit" value="Confirm">
+    </form>
+    <a href="{% url 'proveedor-detail' proveedor.id %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}

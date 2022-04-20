@@ -1,0 +1,14 @@
+{% block content %}
+    <article>
+        <a href="{% url 'proveedor-create' %}"><button>Agregar Proveedor</button></a>
+    </article>
+    {% for proveedor in proveedor_list %}
+        <article>
+            <h2>
+                <a href="{% url 'proveedor-detail' proveedor.id %}">
+                    {{ proveedor.nombre }}
+                </a>
+            </h2>
+        </article>
+    {% endfor %}
+{% endblock %}

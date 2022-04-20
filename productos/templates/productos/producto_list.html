@@ -1,0 +1,14 @@
+{% block content %}
+    <article>
+        <a href="{% url 'producto-create' %}"><button>Agregar Producto</button></a>
+    </article>
+    {% for producto in producto_list %}
+        <article>
+            <h2>
+                <a href="{% url 'producto-detail' producto.id %}">
+                    {{ producto.producto }}
+                </a>
+            </h2>
+        </article>
+    {% endfor %}
+{% endblock %}

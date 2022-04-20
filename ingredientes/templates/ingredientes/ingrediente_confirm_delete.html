@@ -1,0 +1,17 @@
+{% block content %}
+    <form method="post">{% csrf_token %}
+        <p>
+            Estas seguro que deseas eliminar
+            {% if ingrediente.producto %}
+                <em>"{{ ingrediente.producto }}"</em>
+            {% else %}
+                <em>"{{ ingrediente.producto_elaboracion }}"</em>
+            {% endif %}
+           ?
+        </p>
+        <input type="submit" value="Confirm">
+    </form>
+    <a href="{% url 'ingrediente-detail' ingrediente.id %}">
+        <button>Cancel</button>
+    </a>
+{% endblock %}
