@@ -1,13 +1,8 @@
 from django.shortcuts import render
-import json
 # Create your views here.
-from django.template import loader
 from elaboraciones.models import Elaboracion
 from ingredientes.models import Ingrediente
 from productos.models import Producto
-
-from django.http import JsonResponse
-from django.template import loader
 
 def convertidor_unidad_medida(origen: str, destino: str):
     print(origen)

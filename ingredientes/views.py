@@ -12,6 +12,8 @@ from django.views.generic import (
 
 # Create your views here.
 from .models import Ingrediente, Elaboracion
+from comun.importador_csv.ImportadorCSV import ImportadorCSV
+from .forms import IngredienteForm
 
 
 class IngredienteListView(ListView):
@@ -52,3 +54,7 @@ class IngredienteDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
+
+def upload_csv(request):
+    importador = ImportadorCSV("Ingrediente", IngredienteForm.base_fields)
+    return importador.upload_csv(request, "ingrediente")

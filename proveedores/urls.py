@@ -28,4 +28,5 @@ urlpatterns = [
         views.ProveedorDetailView.as_view(),
         name="proveedor-detail"
     ),
+    path("upload-csv/", views.upload_csv, name='proveedor-csv'),
 ]
