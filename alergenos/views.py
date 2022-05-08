@@ -50,5 +50,5 @@ class AlergenoDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 def upload_csv(request):
-    importador = ImportadorCSV("Alergeno", AlergenoForm.base_fields)
-    return importador.upload_csv(request, "alergeno")
+    importador = ImportadorCSV("alergeno", AlergenoForm.base_fields)
+    return importador.upload_csv(request)

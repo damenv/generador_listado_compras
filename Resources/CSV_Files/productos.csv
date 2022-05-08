@@ -1,1 +1,4 @@
 producto, precio, iva, cantidad, unidad_medida, proveedor
+zucchini,10,10.0,2,u,Verdureria
+conejo,30,10.0,1,g,Carniceria
+vino,100,12.0,1,u,

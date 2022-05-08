@@ -48,5 +48,5 @@ class ProductoDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 def upload_csv(request):
-    importador = ImportadorCSV("Producto", ProductoForm.base_fields)
-    return importador.upload_csv(request, "producto")
+    importador = ImportadorCSV("producto", ProductoForm.base_fields)
+    return importador.upload_csv(request)

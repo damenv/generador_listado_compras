@@ -56,5 +56,5 @@ class IngredienteDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 def upload_csv(request):
-    importador = ImportadorCSV("Ingrediente", IngredienteForm.base_fields)
-    return importador.upload_csv(request, "ingrediente")
+    importador = ImportadorCSV("ingrediente", IngredienteForm.base_fields)
+    return importador.upload_csv(request)

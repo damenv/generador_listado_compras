@@ -1,1 +1,3 @@
-nombre, tamaño racion, numero raciones, tiempo de produccion, familia, formato, sabor, producto base, preparacion, link de foto, fecha creado, fecha actualizado, alergenos
+nombre, tamaño racion, numero raciones, tiempo de produccion, familia, formato, sabor, producto base, preparacion, link de foto, alergenos
+Salsa de Tomate,1,20, 0.5,salsas,liquido,tomatoso,tomate,1. Colocar tomates en sarten \n 2. Limpiar , https://bit.ly/3P3ouWR , Cereales con Gluten/Moluscos
+Vinagreta,1,20, 0.5,aderezo,liquido,balsamico,aceite,1. Mezclar en recipiente , https://bit.ly/3skBxth ,

@@ -49,5 +49,5 @@ class ProveedorDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 def upload_csv(request):
-    importador = ImportadorCSV("Proveedor", ProveedorForm.base_fields)
-    return importador.upload_csv(request, "proveedor")
+    importador = ImportadorCSV("proveedor", ProveedorForm.base_fields)
+    return importador.upload_csv(request)

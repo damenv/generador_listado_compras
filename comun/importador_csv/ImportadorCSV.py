@@ -8,7 +8,11 @@ from elaboraciones.forms import ElaboracionForm
 from ingredientes.forms import IngredienteForm
 from productos.forms import ProductoForm
 
-import csv, io
+from alergenos.models import Alergeno
+from proveedores.models import Proveedor
+from productos.models import Producto
+from elaboraciones.models import Elaboracion
+
 
 
 class ImportadorCSV:
@@ -30,7 +34,40 @@ class ImportadorCSV:
         elif modulo == "proveedor":
             return ProveedorForm(data_dict)
 
-    def upload_csv(self, request, modulo):
+    def obtener_objeto_de_modelo(self, modelo, llave, parametros):
+        parametros = parametros.split('/')
+        multiples_objetos = []
+        for parametro in parametros:
+            parametro = parametro.strip()
+
+            if modelo == "elaboracion":
+                result = Alergeno.objects.filter(alergeno__iexact=parametro)[:1]
+                if result.__len__() > 0:
+                    multiples_objetos.append(result[0])
+
+            elif modelo == "ingrediente":
+                if llave == "producto":
+                    result = Producto.objects.filter(producto__iexact=parametro)[:1]
+                    if result.__len__() > 0:
+                        return result[0]
+                    else:
+                        return None
+                elif llave == "producto_elaboracion" or llave == "elaboracion":
+                    result = Elaboracion.objects.filter(nombre__iexact=parametro)[:1]
+                    if result.__len__() > 0:
+                        return result[0]
+                    else:
+                        return None
+
+            elif modelo == "producto":
+                result = Proveedor.objects.filter(nombre__iexact=parametro)[:1]
+                if result.__len__() > 0:
+                    return result[0]
+                else:
+                    return None
+        return multiples_objetos
+
+    def upload_csv(self, request):
         data = {}
         if "POST" == request.method:
             try:
@@ -38,11 +75,11 @@ class ImportadorCSV:
                 tiene_encabezado = request.POST.__contains__("encabezado")
                 if not csv_file.name.endswith('.csv'):
                     messages.error(request, 'Archivo no es tipo CSV')
-                    return HttpResponseRedirect(reverse(modulo + "-list"))
+                    return HttpResponseRedirect(reverse(self.modelo + "-list"))
                 # if file is too large, return
                 if csv_file.multiple_chunks():
                     messages.error(request, "Archivo es demasiado grande (%.2f MB)." % (csv_file.size / (1000 * 1000),))
-                    return HttpResponseRedirect(reverse(modulo + "-list"))
+                    return HttpResponseRedirect(reverse(self.modelo + "-list"))
 
                 file_data = csv_file.read().decode("utf-8")
 
@@ -58,12 +95,17 @@ class ImportadorCSV:
                     i = 0
 
                     for key in self.forma_fields.keys():
-                        data_dict[key] = fields[i]
+                        if type(self.forma_fields[key]).__name__ == "ModelChoiceField" and fields[i]:
+                            data_dict[key] = self.obtener_objeto_de_modelo(self.modelo, key, fields[i])
+                        elif type(self.forma_fields[key]).__name__ == "ModelMultipleChoiceField" and fields[i]:
+                            data_dict[key] = self.obtener_objeto_de_modelo(self.modelo, key, fields[i])
+                        else:
+                            data_dict[key] = fields[i].strip()
                         i += 1
 
                     try:
 
-                        form = self.form_selector(modulo, data_dict)
+                        form = self.form_selector(self.modelo, data_dict)
                         if form.is_valid():
                             form.save(commit=True)
                             self.logger.info("Todo bien")
@@ -79,4 +121,4 @@ class ImportadorCSV:
                 self.logger.exception("Error al subir el archivo. " + repr(e))
                 messages.error(request, "Error al subir el archivo. " + repr(e))
 
-        return HttpResponseRedirect(reverse(modulo + "-list"))
+        return HttpResponseRedirect(reverse(self.modelo + "-list"))

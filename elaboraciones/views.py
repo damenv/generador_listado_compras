@@ -55,5 +55,5 @@ class ElaboracionDeleteView(DeleteView):
         return super().delete(request, *args, **kwargs)
 
 def upload_csv(request):
-    importador = ImportadorCSV("Elaboracion", ElaboracionForm.base_fields)
-    return importador.upload_csv(request, "elaboracion")
+    importador = ImportadorCSV("elaboracion", ElaboracionForm.base_fields)
+    return importador.upload_csv(request)
