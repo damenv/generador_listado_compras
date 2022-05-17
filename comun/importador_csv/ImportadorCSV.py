@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from django.urls import reverse
 from django.contrib import messages
 import logging
@@ -68,7 +69,10 @@ class ImportadorCSV:
         return multiples_objetos
 
     def upload_csv(self, request):
-        data = {}
+        data = {"modulo": self.modelo}
+        if "GET" == request.method:
+            return render(request, "upload_csv.html", context={'modulo_url': self.modelo+"-csv"})
+
         if "POST" == request.method:
             try:
                 csv_file = request.FILES["csv_file"]
