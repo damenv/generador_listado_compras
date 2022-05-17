@@ -1,3 +1,9 @@
+{% block upload_csv %}
+    <article>
+        <a href="{% url 'alergeno-csv' %}"><button>Subir Archivo CSV</button></a>
+    </article>
+{% endblock %}
+
 {% block content %}
     <article>
         <a href="{% url 'alergeno-create' %}"><button>Agregar Alergeno</button></a>

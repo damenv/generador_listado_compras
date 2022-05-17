@@ -28,4 +28,5 @@ urlpatterns = [
         views.AlergenoDetailView.as_view(),
         name="alergeno-detail"
     ),
+    path("upload-csv/", views.upload_csv, name='alergeno-csv'),
 ]

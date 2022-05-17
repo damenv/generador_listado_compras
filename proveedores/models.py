@@ -9,8 +9,9 @@ class Proveedor(models.Model):
     direccion = models.CharField(max_length=100, blank=True)
     pedido_minimo = models.FloatField(default=0.0)
 
-    telefono_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
-                                 message="Telefono debe introducirse en el formato: '+999999999'. Se aceptan hasta 15 dígitos.")
+    telefono_regex = RegexValidator(regex=r'^$|^\+?1?\d{9,15}$',
+                                    message="Telefono debe introducirse en el formato: '+999999999'. "
+                                            "Se aceptan hasta 15 dígitos.")
     telefono = models.CharField(validators=[telefono_regex], max_length=17, blank=True)
 
     email_validator = EmailValidator(message='Introducir un correo válido')

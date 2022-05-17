@@ -10,7 +10,8 @@ from django.views.generic import (
 )
 # Create your views here.
 from .models import Producto
-
+from comun.importador_csv.ImportadorCSV import ImportadorCSV
+from .forms import ProductoForm
 
 class ProductoListView(ListView):
     model = Producto
@@ -45,3 +46,7 @@ class ProductoDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
+
+def upload_csv(request):
+    importador = ImportadorCSV("producto", ProductoForm.base_fields)
+    return importador.upload_csv(request)

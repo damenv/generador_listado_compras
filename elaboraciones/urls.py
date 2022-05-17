@@ -21,4 +21,5 @@ urlpatterns = [
     path("elaboracion/<int:pk>",
          views.ElaboracionDetailView.as_view(),
          name="elaboracion-detail"),
+    path("upload-csv/", views.upload_csv, name='elaboracion-csv'),
 ]

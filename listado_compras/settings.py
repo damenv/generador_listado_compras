@@ -60,7 +60,7 @@ ROOT_URLCONF = 'listado_compras.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['comun/importador_csv/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

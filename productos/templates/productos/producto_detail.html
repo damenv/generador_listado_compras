@@ -5,7 +5,7 @@
         <p><strong>IVA: </strong>{{ producto.iva }}</p>
         <p><strong>Cantidad: </strong>{{ producto.cantidad }} {{ producto.unidad_medida }}</p>
         {% if producto.proveedor %}
-        <p><strong>Proveedor: </strong><a href="{% url 'proveedor-detail' producto.proveedor %}">{{ producto.proveedor }}</a></p>
+        <p><strong>Proveedor: </strong><a href="{% url 'proveedor-detail' producto.proveedor.id %}">{{ producto.proveedor }}</a></p>
         {% endif %}
     </div>
     <p>

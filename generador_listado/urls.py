@@ -4,5 +4,5 @@ from . import views
 
 urlpatterns = [
     path("", TemplateView.as_view(template_name='generador_listado/homepage.html'), name='home'),
-    path("resultados/<int:elaboracion>", views.resultados, name='hoja-resultados')
+    path("resultados/<int:elaboracion>", views.resultados, name='hoja-resultados'),
 ]

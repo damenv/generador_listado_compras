@@ -10,6 +10,8 @@ from django.views.generic import (
 )
 # Create your views here.
 from .models import Proveedor
+from .forms import ProveedorForm
+from comun.importador_csv.ImportadorCSV import ImportadorCSV
 
 
 class ProveedorListView(ListView):
@@ -45,3 +47,7 @@ class ProveedorDeleteView(DeleteView):
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, self.success_message)
         return super().delete(request, *args, **kwargs)
+
+def upload_csv(request):
+    importador = ImportadorCSV("proveedor", ProveedorForm.base_fields)
+    return importador.upload_csv(request)
