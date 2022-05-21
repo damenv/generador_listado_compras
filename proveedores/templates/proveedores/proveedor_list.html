@@ -1,8 +1,5 @@
-{% block upload_csv %}
-    <article>
-        <a href="{% url 'proveedor-csv' %}"><button>Subir Archivo CSV</button></a>
-    </article>
-{% endblock %}
+{% extends "proveedores/proveedor_base.html" %}
+
 {% block content %}
     <article>
         <a href="{% url 'proveedor-create' %}"><button>Agregar Proveedor</button></a>
