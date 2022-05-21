@@ -1,8 +1,5 @@
-{% block upload_csv %}
-    <article>
-        <a href="{% url 'elaboracion-csv' %}"><button>Subir Archivo CSV</button></a>
-    </article>
-{% endblock %}
+{% extends "elaboraciones/elaboracion_base.html" %}
+
 {% block content %}
     <article>
         <a href="{% url 'elaboracion-create' %}"><button>Agregar Elaboración</button></a>

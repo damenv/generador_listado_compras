@@ -1,8 +1,5 @@
-{% block upload_csv %}
-    <article>
-        <a href="{% url 'producto-csv' %}"><button>Subir Archivo CSV</button></a>
-    </article>
-{% endblock %}
+{% extends "productos/producto_base.html" %}
+
 {% block content %}
     <article>
         <a href="{% url 'producto-create' %}"><button>Agregar Producto</button></a>
