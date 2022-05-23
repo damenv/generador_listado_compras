@@ -1,34 +1,52 @@
 {% extends "ingredientes/ingrediente_base.html" %}
 
 {% block content %}
-    <article>
-        <a href="{% url 'ingrediente-create' %}"><button>Agregar Ingrediente</button></a>
-    </article>
-    {% for elaboracion in elaboracion_list %}
+    <div class="row mt-5">
         <article>
-            <h1>
-                <a href="{% url 'elaboracion-detail' elaboracion.id %}">
-                    {{ elaboracion.nombre }}
-                </a>
-            </h1>
-            <h2>Ingredientes</h2>
+            <a href="{% url 'ingrediente-create' %}"><button>Agregar Ingrediente</button></a>
         </article>
-        {% for ingrediente in ingrediente_list %}
-            {% if elaboracion.nombre|slugify == ingrediente.elaboracion|slugify %}
-                <article>
-                    <h3>
-                        {% if ingrediente.producto %}
-                            <a href="{% url 'ingrediente-detail' ingrediente.id %}">
-                                     {{ ingrediente.producto }}
-                            </a>
-                        {% else %}
-                            <a href="{% url 'ingrediente-detail' ingrediente.id %}">
-                                     {{ ingrediente.producto_elaboracion }}
-                            </a>
+    </div>
+
+    <div class="row mt-3">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Elaboración</th>
+                    <th scope="col">Ingrediente</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for elaboracion in elaboracion_list %}
+                    {% for ingrediente in ingrediente_list %}
+                        {% if elaboracion.nombre|slugify == ingrediente.elaboracion|slugify %}
+                            <tr>
+                                <th scope="row">{{ ingrediente.id }}</th>
+                                <td><a href="{% url 'elaboracion-detail' elaboracion.id %}">{{ elaboracion.nombre }}</a></td>
+                                    {% if ingrediente.producto %}
+                                        <td>{{ ingrediente.producto }}</td>
+                                    {% else %}
+                                        <td>{{ ingrediente.producto_elaboracion }}</td>
+                                    {% endif %}
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <a href="{% url 'ingrediente-detail' ingrediente.id %}">
+                                                <button type="button" class="btn btn-primary">Ver</button>
+                                            </a>
+                                            <a href="{% url 'ingrediente-update' ingrediente.id %}">
+                                                <button type="button" class="btn btn-primary">Editar</button>
+                                            </a>
+                                            <a href="{% url 'ingrediente-delete' ingrediente.id %}">
+                                                <button type="button" class="btn btn-primary">Eliminar</button>
+                                            </a>
+                                        </div>
+                                    </td>
+                            </tr>
                         {% endif %}
-                    </h3>
-                </article>
-            {% endif %}
-        {% endfor %}
-    {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}
