@@ -1,16 +1,42 @@
 {% extends "alergenos/alergeno_base.html" %}
 
 {% block content %}
-    <article>
-        <a href="{% url 'alergeno-create' %}"><button>Agregar Alergeno</button></a>
-    </article>
-    {% for alergeno in alergeno_list %}
+    <div class="row mt-5">
         <article>
-            <h2>
-                <a href="{% url 'alergeno-detail' alergeno.id %}">
-                    {{ alergeno.alergeno }}
-                </a>
-            </h2>
+        <a href="{% url 'alergeno-create' %}"><button>Agregar Alergeno</button></a>
         </article>
-    {% endfor %}
+    </div>
+
+    <div class="row mt-3">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Alergeno</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for alergeno in alergeno_list %}
+                    <tr>
+                        <th scope="row">{{ alergeno.id }}</th>
+                        <td>{{ alergeno.alergeno }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'alergeno-detail' alergeno.id %}">
+                                    <button type="button" class="btn btn-primary">Ver</button>
+                                </a>
+                                <a href="{% url 'alergeno-update' alergeno.id %}">
+                                    <button type="button" class="btn btn-primary">Editar</button>
+                                </a>
+                                <a href="{% url 'alergeno-delete' alergeno.id %}">
+                                    <button type="button" class="btn btn-primary">Eliminar</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

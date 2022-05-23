@@ -1,16 +1,42 @@
 {% extends "productos/producto_base.html" %}
 
 {% block content %}
-    <article>
-        <a href="{% url 'producto-create' %}"><button>Agregar Producto</button></a>
-    </article>
-    {% for producto in producto_list %}
+<div class="row mt-5">
         <article>
-            <h2>
-                <a href="{% url 'producto-detail' producto.id %}">
-                    {{ producto.producto }}
-                </a>
-            </h2>
+        <a href="{% url 'producto-create' %}"><button>Agregar Producto</button></a>
         </article>
-    {% endfor %}
+    </div>
+
+    <div class="row mt-3">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in producto_list %}
+                    <tr>
+                        <th scope="row">{{ producto.id }}</th>
+                        <td>{{ producto.producto }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'producto-detail' producto.id %}">
+                                    <button type="button" class="btn btn-primary">Ver</button>
+                                </a>
+                                <a href="{% url 'producto-update' producto.id %}">
+                                    <button type="button" class="btn btn-primary">Editar</button>
+                                </a>
+                                <a href="{% url 'producto-delete' producto.id %}">
+                                    <button type="button" class="btn btn-primary">Eliminar</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

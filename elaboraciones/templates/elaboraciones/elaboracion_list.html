@@ -1,19 +1,42 @@
 {% extends "elaboraciones/elaboracion_base.html" %}
 
 {% block content %}
-    <article>
-        <a href="{% url 'elaboracion-create' %}"><button>Agregar Elaboración</button></a>
-    </article>
-    {% for elaboracion in elaboracion_list %}
+    <div class="row mt-5">
         <article>
-            <h2 class="{{ elaboracion.fecha_creado|date:'l' }}">
-                {{ elaboracion.fecha_creado|date:'Y-m-d H:i' }}
-            </h2>
-            <h3>
-                <a href="{% url 'elaboracion-detail' elaboracion.id %}">
-                    {{ elaboracion.nombre }}
-                </a>
-            </h3>
+        <a href="{% url 'elaboracion-create' %}"><button>Agregar Elaboración</button></a>
         </article>
-    {% endfor %}
+    </div>
+
+    <div class="row mt-3">
+        <table class="table table-striped table-sm">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">Elaboracion</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for elaboracion in elaboracion_list %}
+                    <tr>
+                        <th scope="row">{{ elaboracion.id }}</th>
+                        <td>{{ elaboracion.nombre }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a href="{% url 'elaboracion-detail' elaboracion.id %}">
+                                    <button type="button" class="btn btn-primary">Ver</button>
+                                </a>
+                                <a href="{% url 'elaboracion-update' elaboracion.id %}">
+                                    <button type="button" class="btn btn-primary">Editar</button>
+                                </a>
+                                <a href="{% url 'elaboracion-delete' elaboracion.id %}">
+                                    <button type="button" class="btn btn-primary">Eliminar</button>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
 {% endblock %}

@@ -49,7 +49,7 @@
                         </li>
                     </ul>
                     <form class="d-flex" role="search">
-                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Buscar">
+                      <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Buscar">
                       <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
                 </div>
@@ -57,7 +57,9 @@
         </nav>
     {% endblock %}
 
-    <h1>{% block encabezado %}Makeat{% endblock %}</h1>
+    <div class="d-flex justify-content-center">
+        <h1>{% block encabezado %}Makeat{% endblock %}</h1>
+    </div>
 
     {% if messages %}
         <ul class="messages">
@@ -69,6 +71,8 @@
         </ul>
     {% endif %}
 
-    {% block content %}{% endblock %}
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
 </body>
 </html>
