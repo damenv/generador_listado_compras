@@ -1,16 +1,10 @@
+{% extends "proveedores/proveedor_base.html" %}
+
 {% block content %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Save">
+        <input class="btn btn-primary" type="submit" value="Guardar">
+        <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
     </form>
-    {% if proveedor %}
-        <a href="{% url 'proveedor-detail' proveedor.id %}">
-            <button>Cancel</button>
-        </a>
-    {% else %}
-        <a href="{% url 'proveedor-list' %}">
-            <button>Cancel</button>
-        </a>
-    {% endif %}
 {% endblock %}

@@ -1,14 +1,18 @@
-<article>
-    <h2>{{ proveedor.nombre }}</h2>
-    <div>
-        <p><strong>Familia de Productos: </strong>{{ proveedor.familia_productos }}</p>
-        <p><strong>Pedido Minimo: </strong>{{ proveedor.pedido_minimo }} euros</p>
-        <p><strong>Direccion: </strong>{{ proveedor.direccion }}</p>
-        <p><strong>Telefono: </strong>{{ proveedor.telefono }}</p>
-        <p><strong>Correo Electronico: </strong>{{ proveedor.correo_electronico }}</p>
-    </div>
-    <p>
-        <a href="{% url 'proveedor-update' proveedor.id %}">✍️ Editar</a>
-        <a href="{% url 'proveedor-delete' proveedor.id %}">✍️ Eliminar</a>
-    </p>
-</article>
+{% extends "proveedores/proveedor_base.html" %}
+
+{% block content %}
+    <article>
+        <h2>{{ proveedor.nombre }}</h2>
+        <div>
+            <p><strong>Familia de Productos: </strong>{{ proveedor.familia_productos }}</p>
+            <p><strong>Pedido Minimo: </strong>{{ proveedor.pedido_minimo }} euros</p>
+            <p><strong>Direccion: </strong>{{ proveedor.direccion }}</p>
+            <p><strong>Telefono: </strong>{{ proveedor.telefono }}</p>
+            <p><strong>Correo Electronico: </strong>{{ proveedor.correo_electronico }}</p>
+        </div>
+        <p>
+            <a class="btn btn-secondary" href="{% url 'proveedor-update' proveedor.id %}">Editar</a>
+            <a class="btn btn-secondary btn-danger" href="{% url 'proveedor-delete' proveedor.id %}">Eliminar</a>
+        </p>
+    </article>
+{% endblock %}
