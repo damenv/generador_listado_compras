@@ -1,16 +1,10 @@
+{% extends "elaboraciones/elaboracion_base.html" %}
+
 {% block content %}
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Save">
+       <input class="btn btn-primary" type="submit" value="Guardar">
+        <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
     </form>
-    {% if elaboracion %}
-        <a href="{% url 'elaboracion-detail' elaboracion.id %}">
-            <button>Cancel</button>
-        </a>
-    {% else %}
-        <a href="{% url 'elaboracion-list' %}">
-            <button>Cancel</button>
-        </a>
-    {% endif %}
 {% endblock %}

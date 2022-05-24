@@ -1,13 +1,13 @@
+{% extends "alergenos/alergeno_base.html" %}
+
 {% block content %}
     <form method="post">{% csrf_token %}
         <p>
-            Estas seguro que deseas eliminar
-            <em>"{{ alergeno.alergeno }}"</em>
+            Estas seguro que deseas eliminar el alergeno
+            <strong><em>"{{ alergeno.alergeno }}"</em></strong>
            ?
         </p>
-        <input type="submit" value="Confirm">
+        <input class="btn btn-secondary" type="submit" value="Confirmar">
+        <button type="button" class="btn btn-primary" onclick="window.history.back();">Cancel</button>
     </form>
-    <a href="{% url 'alergeno-detail' alergeno.id %}">
-        <button>Cancel</button>
-    </a>
 {% endblock %}

@@ -1,17 +1,17 @@
+{% extends "ingredientes/ingrediente_base.html" %}
+
 {% block content %}
     <form method="post">{% csrf_token %}
         <p>
-            Estas seguro que deseas eliminar
+            Estas seguro que deseas eliminar el ingrediente
             {% if ingrediente.producto %}
-                <em>"{{ ingrediente.producto }}"</em>
+                <strong><em>"{{ ingrediente.producto }}"</em></strong>
             {% else %}
-                <em>"{{ ingrediente.producto_elaboracion }}"</em>
+                <strong><em>"{{ ingrediente.producto_elaboracion }}"</em></strong>
             {% endif %}
            ?
         </p>
-        <input type="submit" value="Confirm">
+        <input class="btn btn-secondary" type="submit" value="Confirmar">
+        <button type="button" class="btn btn-primary" onclick="window.history.back();">Cancel</button>
     </form>
-    <a href="{% url 'ingrediente-detail' ingrediente.id %}">
-        <button>Cancel</button>
-    </a>
 {% endblock %}

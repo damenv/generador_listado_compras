@@ -1,46 +1,50 @@
-<article>
-    <h2>{{ elaboracion.fecha_creado|date:'Y-m-d H:i' }}</h2>
-    <h3>{{ elaboracion.nombre }}</h3>
-    <div>
-        <p><strong>Tamaño Racion: </strong>{{ elaboracion.tamano_racion }}</p>
-        {% if elaboracion.numero_raciones %}
-            <p><strong>Numero de Raciones: </strong>{{ elaboracion.numero_raciones }}</p>
-        {% endif %}
-        <p><strong>Tiempo Produccion (h): </strong>{{ elaboracion.tiempo_produccion }}</p>
-        {% if elaboracion.familia %}
-            <p><strong>Familia: </strong>{{ elaboracion.familia }}</p>
-        {% endif %}
-        {% if elaboracion.formato %}
-            <p><strong>Formato: </strong>{{ elaboracion.formato }}</p>
-        {% endif %}
-        {% if elaboracion.sabor %}
-            <p><strong>Sabor: </strong>{{ elaboracion.sabor }}</p>
-        {% endif %}
-        {% if elaboracion.producto_base %}
-            <p><strong>Producto Base: </strong>{{ elaboracion.producto_base }}</p>
-        {% endif %}
-        {% if elaboracion.alergenos.all %}
-            <p><strong>Alergenos: </strong>
-                {% for alergeno in elaboracion.alergenos.all %}
-                    {{ alergeno }},
-                {% endfor %}
-                </p>
-        {% else %}
-            <p><strong>Alergenos: </strong>Libre de alergenos</p>
-        {% endif %}
+{% extends "elaboraciones/elaboracion_base.html" %}
 
-    </div>
-    <div>
-        <p>{{ elaboracion.preparacion }}</p>
-        <div><img src="{{ elaboracion.link_foto }}"></div>
-        <p><strong>Ultima actualizacion: </strong>{{ elaboracion.fecha_actualizado }}</p>
-    </div>
-    <p>
-        <a href="{% url 'elaboracion-update' elaboracion.id %}">✍️ Editar</a>
-        <a href="{% url 'elaboracion-delete' elaboracion.id %}"> Eliminar</a>
-    </p>
+{% block content %}
+    <article>
+        <h2>{{ elaboracion.fecha_creado|date:'Y-m-d H:i' }}</h2>
+        <h3>{{ elaboracion.nombre }}</h3>
+        <div>
+            <p><strong>Tamaño Racion: </strong>{{ elaboracion.tamano_racion }}</p>
+            {% if elaboracion.numero_raciones %}
+                <p><strong>Numero de Raciones: </strong>{{ elaboracion.numero_raciones }}</p>
+            {% endif %}
+            <p><strong>Tiempo Produccion (h): </strong>{{ elaboracion.tiempo_produccion }}</p>
+            {% if elaboracion.familia %}
+                <p><strong>Familia: </strong>{{ elaboracion.familia }}</p>
+            {% endif %}
+            {% if elaboracion.formato %}
+                <p><strong>Formato: </strong>{{ elaboracion.formato }}</p>
+            {% endif %}
+            {% if elaboracion.sabor %}
+                <p><strong>Sabor: </strong>{{ elaboracion.sabor }}</p>
+            {% endif %}
+            {% if elaboracion.producto_base %}
+                <p><strong>Producto Base: </strong>{{ elaboracion.producto_base }}</p>
+            {% endif %}
+            {% if elaboracion.alergenos.all %}
+                <p><strong>Alergenos: </strong>
+                    {% for alergeno in elaboracion.alergenos.all %}
+                        {{ alergeno }},
+                    {% endfor %}
+                    </p>
+            {% else %}
+                <p><strong>Alergenos: </strong>Libre de alergenos</p>
+            {% endif %}
 
-    <p>
-        <a href="{% url 'hoja-resultados' elaboracion.id %}">Hoja resultados</a>
-    </p>
-</article>
+        </div>
+        <div>
+            <p>{{ elaboracion.preparacion }}</p>
+            <div><img src="{{ elaboracion.link_foto }}"></div>
+            <p><strong>Ultima actualizacion: </strong>{{ elaboracion.fecha_actualizado }}</p>
+        </div>
+        <p>
+            <a class="btn btn-secondary" href="{% url 'elaboracion-update' elaboracion.id %}">Editar</a>
+            <a class="btn btn-secondary btn-danger" href="{% url 'elaboracion-delete' elaboracion.id %}">Eliminar</a>
+        </p>
+
+        <p>
+            <a class="btn btn-primary" href="{% url 'hoja-resultados' elaboracion.id %}">Hoja de resultados</a>
+        </p>
+    </article>
+{% endblock %}

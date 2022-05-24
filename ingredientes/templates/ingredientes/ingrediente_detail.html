@@ -1,15 +1,19 @@
-<article>
-    {% if ingrediente.producto %}
-        <h2>{{ ingrediente.producto }}</h2>
-    {% else %}
-        <h2>{{ ingrediente.producto_elaboracion }}</h2>
-    {% endif %}
-    <div>
-        <p><strong>Elaboración: </strong>{{ ingrediente.elaboracion }}</p>
-        <p><strong>Cantidad: </strong>"{{ ingrediente.cantidad }} {{ ingrediente.unidad_medida }}"</p>
-    </div>
-    <p>
-        <a href="{% url 'ingrediente-update' ingrediente.id %}">✍️ Editar</a>
-        <a href="{% url 'ingrediente-delete' ingrediente.id %}">✍️ Eliminar</a>
-    </p>
-</article>
+{% extends "ingredientes/ingrediente_base.html" %}
+
+{% block content %}
+    <article>
+        {% if ingrediente.producto %}
+            <h2>{{ ingrediente.producto }}</h2>
+        {% else %}
+            <h2>{{ ingrediente.producto_elaboracion }}</h2>
+        {% endif %}
+        <div>
+            <p><strong>Elaboración: </strong>{{ ingrediente.elaboracion }}</p>
+            <p><strong>Cantidad: </strong>"{{ ingrediente.cantidad }} {{ ingrediente.unidad_medida }}"</p>
+        </div>
+        <p>
+            <a class="btn btn-secondary" href="{% url 'ingrediente-update' ingrediente.id %}">✍️ Editar</a>
+            <a class="btn btn-secondary btn-danger" href="{% url 'ingrediente-delete' ingrediente.id %}">✍️ Eliminar</a>
+        </p>
+    </article>
+{% endblock %}

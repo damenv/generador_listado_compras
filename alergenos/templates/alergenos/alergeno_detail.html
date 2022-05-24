@@ -1,7 +1,10 @@
-<article>
-    <h2>{{ alergeno.alergeno }}</h2>
-    <p>
-        <a href="{% url 'alergeno-update' alergeno.id %}">✍️ Editar</a>
-        <a href="{% url 'alergeno-delete' alergeno.id %}">✍️ Eliminar</a>
-    </p>
-</article>
+{% extends "alergenos/alergeno_base.html" %}
+{% block content %}
+    <article>
+        <h2>{{ alergeno.alergeno }}</h2>
+        <p>
+            <a class="btn btn-secondary" href="{% url 'alergeno-update' alergeno.id %}">Editar</a>
+            <a class="btn btn-secondary btn-danger" href="{% url 'alergeno-delete' alergeno.id %}">Eliminar</a>
+        </p>
+    </article>
+{% endblock %}
